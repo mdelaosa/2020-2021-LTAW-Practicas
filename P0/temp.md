@@ -59,7 +59,7 @@ Más información en [Otra vez entre corchetes, y entre paréntesis # + el nombr
 ![logo](Logo-urjc.png)  
 Se hace como los links pero añadiendo una ! delante de los []
 
-![imagen tiburón ballena](https://es.wikipedia.org/wiki/Rhincodon_typus#/media/Archivo:Similan_Dive_Center_-_great_whale_shark.jpg)
+![imagen tiburón ballena](https://upload.wikimedia.org/wikipedia/commons/f/f6/Similan_Dive_Center_-_great_whale_shark.jpg)
 
 
 # Citas
