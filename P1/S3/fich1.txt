@@ -1,0 +1,4 @@
+Fichero 1
+Linea 2
+Linea 3
+Fin del fichero
