@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Elemento raiz del esquema. Se define su espacio
+     de nombres (xs)                                -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Aquí se definen el elemento raiz de mi lenguaje -->
+    <xs:element name="tienda" type="xs:string">
+
+     <!-- Aqui se definen el resto de elementos -->
+
+    </xs:element>
+
+</xs:schema>
