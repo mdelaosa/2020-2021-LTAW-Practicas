@@ -10,6 +10,10 @@ h5{
     font-family: 'Itim', cursive;
 }
 #bloques{
+    justify-content: center;
+    margin-left: 5%;
+    margin-right: auto;
+    text-align:center;
     width: 70%;
  }
 #izquierda {
@@ -19,6 +23,6 @@ h5{
 }
 #derecha {
     float: right;
-    width: 47%;
+    width: 45%;
     margin: 1px;
 }
