@@ -9,3 +9,16 @@ h5{
     color: #0cecda;
     font-family: 'Itim', cursive;
 }
+#bloques{
+    width: 70%;
+ }
+#izquierda {
+    float: left;
+    width: 47%;
+    margin: 1px;
+}
+#derecha {
+    float: right;
+    width: 47%;
+    margin: 1px;
+}
