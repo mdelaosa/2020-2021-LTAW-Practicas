@@ -4,7 +4,7 @@ const fs = require('fs');
 const url = require('url');
 
 //-- Puerto
-const PUERTO = 8000
+const PUERTO = 9000
 
 //-- Comprobación
 console.log("Servidor arrancado");
@@ -14,14 +14,13 @@ const server = http.createServer((req, res) => {
   console.log("- - Petición recibida - -\n");
 
   //-- Recurso URL
-  //-- const myURL = new URL(req.URL, 'http://' + req.headers['host']);
   let myURL = url.parse(req.url, true);
   console.log("Recurso solicitado:" + myURL.pathname)
 
-  //-- Fichero para la variable de peticióon
+  //-- Fichero para la variable de peticion
   let filename = "";
   //-- Fichero a devolver
-  //-- http://localhost:8000/
+  //-- http://localhost:9000/
   if (myURL.pathname == "/"){ 
     //-- Principal
     filename += "/tienda.html";  
@@ -44,6 +43,7 @@ const server = http.createServer((req, res) => {
       'png'  : 'image/png',
       'ico'  : 'image/x-icon'
     };
+    
     let mime = mime_type[type_file];
     
     //-- Fichero no encontrado. Devolver mensaje de error
