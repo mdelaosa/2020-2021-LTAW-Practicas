@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
   console.log("- - Petición recibida - -\n");
 
   //-- Recurso URL
-  const myURL = new URL(req.URL, 'http://' + req.header['host']);
+  const myURL = new URL(req.URL, 'http://' + req.headers['host']);
 
   //-- Recurso URL
   //let myURL = url.parse(req.url, true);
@@ -33,26 +33,28 @@ const server = http.createServer((req, res) => {
 
   //-- Coger la extensión
   type_file = filename.split(".")[1]; 
-  //-- filename = "." + filename //-- Lectura del fichero desde "." incluido
+  filename = "." + filename; //-- Lectura del fichero desde "." incluido
 
   console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
 
   //-- Lectura fichero
   fs.readFile(filename, function(err, data) {
     let mime = "text/html"
-    //-- Fichero no encontrado. Devolver mensaje de error 404
+    //-- Fichero no encontrado. Devolver mensaje de error
     if ((err) || fich == "./error.html") {
-      res.setHeader(404, {'Content-Type': 'mime'});
-      res.write("404 Not Found");
+      res.writeHead(404, {'Content-Type': mime});
+      res.write("Not Found");
       res.end();
+    }else{
+      //-- Si no da error: 200 OK
+      res.writeHead(200, {'Content-Type': mime});
     }
-    //-- Si no da error: 200 OK
-    res.setHeader(200, {'Content-Type': mime});
     res.write(data);
     res.end();
   });
 
-}).listen(PUERTO);
+});
+server.listen(PUERTO);
 
 console.log("Servidor corriendo...")
 console.log("Puerto: " + PUERTO)
