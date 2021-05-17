@@ -26,7 +26,7 @@ const server = http.createServer((req, res) => {
     //-- Principal
     filename += "/tienda.html";  
   }else{
-    filename = myURL.pathname; 
+    filename += myURL.pathname; 
   }
 
   //-- Coger la extensión
@@ -36,19 +36,20 @@ const server = http.createServer((req, res) => {
 
   //-- Lectura fichero
   fs.readFile(filename, function(err, data) {
+
     const mime_type = {
       'html' : 'text/html',
       'css'  : 'text/css',
       'png'  : 'image/png',
       'ico'  : 'image/x-icon'
-    };;
+    };
     let mime = mime_type[type_file];
     
     //-- Fichero no encontrado. Devolver mensaje de error
     if (err) {
       res.writeHead(404, {'Content-Type': mime});
-      filename = "error.html"; 
-      data = fs.readFileSync(filename);
+      //-- filename = "error.html"; 
+      //-- data = fs.readFileSync(filename);
     }else{
       //-- Si no da error: 200 OK
       res.writeHead(200, {'Content-Type': mime});
