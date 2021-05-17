@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
   //-- http://localhost:8000/
   if (myURL.pathname == "/") 
     //-- Principal
-    filename += "/tienda.html";  
+    filename += "tienda.html";  
   else{
     filename = myURL.pathname; 
   }
@@ -40,8 +40,6 @@ const server = http.createServer((req, res) => {
 
   console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
 
-
-  
   //-- Lectura fichero
   fs.readFile(filename, function(err, data) {
     let mime = 'text/html';
