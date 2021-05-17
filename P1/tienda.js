@@ -1,0 +1,58 @@
+//-- Servidor de la tienda
+const http = require('http');
+const fs = require('fs');
+
+//-- Puerto
+const PUERTO = 8000
+
+//-- Comprobación
+console.log("Servidor arrancado");
+
+//-- Creación del servidor. Mensaje de control en terminal
+const server = http.createServer((req, res) => {
+  console.log("- - Petición recibida - -\n");
+
+  //-- Recurso URL
+  const myURL = new URL(req.URL, 'http://' + req.header['host']);
+
+  //-- Recurso URL
+  //let myURL = url.parse(req.url, true);
+  console.log("Recurso solicitado:" + req.url)
+  //console.log("Recurso recibido:" + myURL.pathname)
+
+  //-- Fichero para la variable de peticióon
+  let filename = "";
+  //-- Fichero a devolver
+  //-- http://localhost:8000/
+  if (myURL.pathname == "/") 
+    //-- Principal
+    filename += "/tienda.html";  
+  else{
+    filename = myURL.pathname; 
+  }
+
+  //-- Coger la extensión
+  type_file = filename.split(".")[1]; 
+  //-- filename = "." + filename //-- Lectura del fichero desde "." incluido
+
+  console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
+
+  //-- Lectura fichero
+  fs.readFile(filename, function(err, data) {
+    let mime = "text/html"
+    //-- Fichero no encontrado. Devolver mensaje de error 404
+    if ((err) || fich == "./error.html") {
+      res.setHeader(404, {'Content-Type': 'mime'});
+      res.write("404 Not Found");
+      res.end();
+    }
+    //-- Si no da error: 200 OK
+    res.setHeader(200, {'Content-Type': mime});
+    res.write(data);
+    res.end();
+  });
+
+}).listen(PUERTO);
+
+console.log("Servidor corriendo...")
+console.log("Puerto: " + PUERTO)
