@@ -14,11 +14,7 @@ const server = http.createServer((req, res) => {
 
   //-- Recurso URL
   const myURL = new URL(req.URL, 'http://' + req.headers['host']);
-
-  //-- Recurso URL
-  //let myURL = url.parse(req.url, true);
-  console.log("Recurso solicitado:" + req.url)
-  //console.log("Recurso recibido:" + myURL.pathname)
+  console.log("Recurso solicitado:" + myURL.pathname)
 
   //-- Fichero para la variable de peticióon
   let filename = "";
@@ -37,20 +33,22 @@ const server = http.createServer((req, res) => {
 
   console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
 
+
+  
   //-- Lectura fichero
   fs.readFile(filename, function(err, data) {
     let mime = "text/html"
     //-- Fichero no encontrado. Devolver mensaje de error
-    if ((err) || fich == "./error.html") {
+    if (err) {
       res.writeHead(404, {'Content-Type': mime});
       res.write("Not Found");
       res.end();
     }else{
       //-- Si no da error: 200 OK
       res.writeHead(200, {'Content-Type': mime});
+      res.write(data);
+      res.end();
     }
-    res.write(data);
-    res.end();
   });
 
 });
