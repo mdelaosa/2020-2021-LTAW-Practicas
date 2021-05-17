@@ -31,6 +31,7 @@ const server = http.createServer((req, res) => {
 
   //-- Coger la extensión
   type_file = filename.split(".")[1]; 
+  filename = "." + filename;
 
   console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
 
