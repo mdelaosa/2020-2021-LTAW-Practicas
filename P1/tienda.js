@@ -1,6 +1,7 @@
 //-- Servidor de la tienda
 const http = require('http');
 const fs = require('fs');
+const url = require('url');
 
 //-- Puerto
 const PUERTO = 8000
@@ -27,16 +28,16 @@ const server = http.createServer((req, res) => {
   let filename = "";
   //-- Fichero a devolver
   //-- http://localhost:8000/
-  if (myURL.pathname == "/") 
+  if (myURL.pathname == "/"){ 
     //-- Principal
-    filename += "tienda.html";  
-  else{
+    filename += "/tienda.html";  
+  }else{
     filename = myURL.pathname; 
   }
 
   //-- Coger la extensión
   type_file = filename.split(".")[1]; 
-  filename = "." + filename; //-- Lectura del fichero desde "." incluido
+  //-- filename = "." + filename; //-- Lectura del fichero desde "." incluido
 
   console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
 
@@ -53,7 +54,7 @@ const server = http.createServer((req, res) => {
     }
     //-- Icono
     if (type_file == "ico"){
-      mime = "text/plain";
+      mime = "image/x-icon";
     }
     //-- Fichero no encontrado. Devolver mensaje de error
     if (err) {
