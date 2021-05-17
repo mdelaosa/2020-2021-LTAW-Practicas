@@ -9,19 +9,13 @@ const PUERTO = 8000
 //-- Comprobación
 console.log("Servidor arrancado");
 
-const mime = {
-  'html' : 'text/html',
-  'css'  : 'text/css',
-  'png'  : 'image/png',
-  'ico'  : 'image/x-icon'
-};
-
 //-- Creación del servidor. Mensaje de control en terminal
 const server = http.createServer((req, res) => {
   console.log("- - Petición recibida - -\n");
 
   //-- Recurso URL
-  const myURL = new URL(req.URL, 'http://' + req.headers['host']);
+  //-- const myURL = new URL(req.URL, 'http://' + req.headers['host']);
+  let myURL = url.parse(req.url, true);
   console.log("Recurso solicitado:" + myURL.pathname)
 
   //-- Fichero para la variable de peticióon
@@ -37,32 +31,24 @@ const server = http.createServer((req, res) => {
 
   //-- Coger la extensión
   type_file = filename.split(".")[1]; 
-  //-- filename = "." + filename; //-- Lectura del fichero desde "." incluido
 
   console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
 
   //-- Lectura fichero
   fs.readFile(filename, function(err, data) {
-    let mime = 'text/html';
-    //-- Imagenes
-    if (type_file == 'png') {
-      mime = "image/png";
-    }
-    //-- CSS
-    if (type_file == "css"){
-      mime = "text/css";
-    }
-    //-- Icono
-    if (type_file == "ico"){
-      mime = "image/x-icon";
-    }
+    const mime_type = {
+      'html' : 'text/html',
+      'css'  : 'text/css',
+      'png'  : 'image/png',
+      'ico'  : 'image/x-icon'
+    };;
+    let mime = mime_type[type_file];
+    
     //-- Fichero no encontrado. Devolver mensaje de error
     if (err) {
       res.writeHead(404, {'Content-Type': mime});
       filename = "error.html"; 
       data = fs.readFileSync(filename);
-      //-- res.write("Not Found");
-      //-- res.end();
     }else{
       //-- Si no da error: 200 OK
       res.writeHead(200, {'Content-Type': mime});
