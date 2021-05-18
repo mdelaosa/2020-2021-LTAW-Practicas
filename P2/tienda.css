@@ -1,0 +1,30 @@
+body {
+    background-color: black;
+}
+h3{
+    color: #d4f0ed;
+    font-family: 'Itim', cursive;
+}
+h5{
+    color: #0cecda;
+    font-family: 'Itim', cursive;
+}
+#bloques{
+    justify-content: center;
+    margin-left: 5%;
+    margin-right: auto;
+    text-align:center;
+    width: 70%;    
+ }
+#izquierda {
+    float: left;
+    width: 45%;
+    margin: 1px;
+    border-radius: 25%;
+    background:#b5ebeba1
+}
+#derecha {
+    float: right;
+    width: 53%;
+    margin: 1px;
+}
