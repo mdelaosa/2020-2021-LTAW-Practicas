@@ -27,13 +27,7 @@ const FORMULARIO_ERROR = fs.readFileSync('form-pedido-error.html');
 const LOGIN = fs.readFileSync('form-login.html');
 const LOGIN_ERROR = fs.readFileSync('form-login-error.html');
 
-const mime_type = {
-  'html' : 'text/html',
-  'css'  : 'text/css',
-  'png'  : 'image/png',
-  'ico'  : 'image/x-icon'
-};
-let mime = mime_type[type_file];
+
 
 //-- Comprobación
 console.log("Servidor arrancado");
@@ -65,7 +59,13 @@ const server = http.createServer((req, res) => {
 
   //-- Lectura fichero
   fs.readFile(filename, function(err, data) {
-  
+    const mime_type = {
+      'html' : 'text/html',
+      'css'  : 'text/css',
+      'png'  : 'image/png',
+      'ico'  : 'image/x-icon'
+    };
+    let mime = mime_type[type_file];
     //-- Fichero no encontrado. Devolver mensaje de error
     if (err) {
       res.writeHead(404, {'Content-Type': mime});
