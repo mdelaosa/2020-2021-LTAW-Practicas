@@ -17,9 +17,9 @@ const PRODUCTO3 = fs.readFileSync('atl.html','utf-8');
 const CARRITO = fs.readFileSync('carrito.html','utf-8');
 
 //-- Registo json + estructura de tienda
-const FICH_JSON = "tienda.json";
-const TIENDA_JSON = fs.readFileSync(FICH_JSON);
-const TIENDA = JSON.parse(TIENDA_JSON);
+//const FICH_JSON = "tienda.json";
+//const TIENDA_JSON = fs.readFileSync(FICH_JSON);
+//const TIENDA = JSON.parse(TIENDA_JSON);
 
 //-- Formularios
 const FORMULARIO = fs.readFileSync('form-pedido.html');
