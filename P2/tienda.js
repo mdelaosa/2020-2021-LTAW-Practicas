@@ -90,13 +90,8 @@ const server = http.createServer((req, res) => {
       res.writeHead(404, {'Content-Type': mime});
       filename = "error.html"; 
       data = fs.readFileSync(filename);
-    }else if(filename = "harry.html"){
-      data = producto1;
-    }else if(filename = "shawn.html"){
-      data = producto2;
-    }else if(filename = "atl.html"){
-      data = producto3;
     }else{
+      
       //-- Si no da error: 200 OK
       res.writeHead(200, {'Content-Type': mime});
     }
