@@ -1,0 +1,53 @@
+[
+
+    {
+        "productos": [
+            {
+                "nombre": "Harry",
+                "precio": "14,99€",
+                "stock": 5
+                },
+                {
+                "nombre": "Shawn",
+                "precio": "6,99€",
+                "stock": 5
+                },
+                {
+                "nombre": "ATL",
+                "precio": "6,99€",
+                "stock": 5
+                }
+        ]      
+    },
+    {
+        "usuarios":[
+            {
+                "usuario": "fan1",
+                "nombre": "Maria",
+                "email": "emailinventado1@gmail.com"
+
+            },
+            {
+                "usuario": "root",
+                "nombre": "Root",
+                "email": "emailroot@gmail.com"
+
+            }
+        ]
+    },
+    {
+        "pedidos": [
+            {   
+                "usuario": "fan1",
+                "tarjeta": "12345",
+                "direccion": "Calle Aleatoria 1",
+                "productos": [
+                    {
+                        "producto": "Cesta Completa",
+                        "unidades": 1
+                    }
+                ]
+            }
+        ]
+    }
+]
