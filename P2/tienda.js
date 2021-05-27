@@ -86,12 +86,17 @@ const server = http.createServer((req, res) => {
   fs.readFile(filename, function(err, data) {
 
     //-- Fichero no encontrado. Devolver mensaje de error
-    if (err) {
+    if (err || (myURL.pathname == "/error.html")) {
       res.writeHead(404, {'Content-Type': mime});
       filename = "error.html"; 
       data = fs.readFileSync(filename);
+    }else if(myURL.pathname == "/harry.html"){
+      data = producto1;
+    }else if(myURL.pathname == "/shawn.html"){
+      data = producto2;
+    }else if(myURL.pathname == "/atl.html"){
+      data = producto3;
     }else{
-      
       //-- Si no da error: 200 OK
       res.writeHead(200, {'Content-Type': mime});
     }
