@@ -2,7 +2,7 @@ body {
     background-color: black;
 }
 h3{
-    color: #d4f0ed;
+    color: #0de9d3;
     font-family: 'Itim', cursive;
 }
 h5{
@@ -10,8 +10,8 @@ h5{
     font-family: 'Itim', cursive;
 }
 #chat{
-    border: cornsilk;
-    background-color: #b5ebeba1;
-    height: 150px;
-    width: 200px;
+    border-radius: 2.5%;
+    background-color: #18e7e7e8;
+    height: 500px;
+    width: 800px;
 }
