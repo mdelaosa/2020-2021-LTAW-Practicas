@@ -1,14 +1,21 @@
-body {
-    background-color: black;
+body::-webkit-scrollbar {
+    width: 12px;
 }
+  
+body::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+}
+  
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(128, 175, 177);
+    border-radius: 50px;
+}
+
 h3{
-    color: #0de9d3;
+    color: #f2f566;
     font-family: 'Itim', cursive;
 }
-h5{
-    color: #0cecda;
-    font-family: 'Itim', cursive;
-}
+
 #chat{
     border-radius: 2.5%;
     background-color: #18e7e7e8;
@@ -16,6 +23,20 @@ h5{
     width: 800px;
     overflow-y: scroll;
 }
+
+div::-webkit-scrollbar {
+    width: 12px;
+}
+  
+div::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.377);
+}
+  
+div::-webkit-scrollbar-thumb {
+    background-color: rgb(128, 175, 177);
+    border-radius: 50px;
+}
+
 input{
     border-radius: 2.5%;
     height: 25px;
