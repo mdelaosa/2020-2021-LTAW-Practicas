@@ -39,3 +39,8 @@ button:hover {
     background-color: #2EBDB1;
     color: black;
 }
+
+#display{
+    color: #000000;
+    font-family: 'Itim', cursive;
+}
