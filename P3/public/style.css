@@ -14,6 +14,7 @@ h5{
     background-color: #18e7e7e8;
     height: 500px;
     width: 800px;
+    overflow-y: scroll;
 }
 input{
     border-radius: 2.5%;
