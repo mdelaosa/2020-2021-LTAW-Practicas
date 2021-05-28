@@ -45,3 +45,15 @@ input:hover {
     background-color: #2EBDB1;
     color: black;
 }
+button{
+    width: 200px;
+    height: 45px;
+    background-color: #b5ebeba1;
+    color: #020e0d;
+    font: bold 100% monospace;
+    border-radius: 15px 15px 15px 15px;
+    }
+button:hover {
+    background-color: #2EBDB1;
+    color: black;
+}
