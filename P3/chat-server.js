@@ -55,28 +55,28 @@ io.on('connection', (socket) => {
       switch(msg){
         case '/help':
           console.log("Lista de comandos".blue);
-          msg = commandos;
-          socket.send(msg);
+          //msg = commandos;
+          socket.send(commandos);
           break;
         case '/list':
           console.log("Lista de usuarios".blue);
-          msg = connect_count;
-          socket.send("Hay un total de " + msg + " marujas en la ciudad.");
+          //msg = connect_count;
+          socket.send("Hay un total de " + connect_count + " marujas en la ciudad.");
           break;
         case '/hello':
           console.log("Holi".blue);
-          msg = hello;
-          socket.send(msg);
+          //msg = hello;
+          socket.send(hello);
           break;
         case '/date':
           console.log("Fecha".blue);
-          msg = date;
-          socket.send(msg);
+          //msg = date;
+          socket.send(date);
           break;
         default:
           console.log("Not Found".blue);
-          msg = "404 Not Found. Comando no reconocido, prueba de nuevo. Los comandos están en /help";
-          socket.send(msg);
+          //msg = "404 Not Found. Comando no reconocido, prueba de nuevo. Los comandos están en /help";
+          socket.send("404 Not Found. Comando no reconocido, prueba de nuevo. Los comandos están en /help");
           break;
       }
     } else {
