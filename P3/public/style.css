@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+}
+h3{
+    color: #d4f0ed;
+    font-family: 'Itim', cursive;
+}
+h5{
+    color: #0cecda;
+    font-family: 'Itim', cursive;
+}
+#chat{
+    border: cornsilk;
+    background-color: #b5ebeba1;
+    height: 150px;
+    width: 200px;
+}
