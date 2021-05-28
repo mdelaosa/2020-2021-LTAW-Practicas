@@ -1,6 +1,16 @@
 body {
     background-color: black;
 }
+body::-webkit-scrollbar {
+    width: 12px;
+}
+body::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(128, 175, 177);
+    border-radius: 50px;
+}
 h3{
     color: #d4f0ed;
     font-family: 'Itim', cursive;
