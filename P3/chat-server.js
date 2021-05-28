@@ -5,8 +5,10 @@ const colors = require('colors');
 
 const PUERTO = 9000;
 
+const commandos = "Los comandos disponibles son: /help, /list, /hello y /date";
 const welcome = "Has llegado al servidor perfecto para marujear";
 const bye = "¡Adiós!";
+const hello = "¡Holi! Esperamos que tengas información que contar";
 const usuario = "Alguien nuevo quiere cotillear";
 
 //-- Server
@@ -18,7 +20,7 @@ let connect_count = 0;
 
 //-- Entrada web
 app.get('/', (req, res) => {
-  res.send('Acabas de entrar en la ciudad que no duerme');
+  res.send('Acabas de entrar en la ciudad que no duerme pero está disponible <p><a href="/index.html">aquí</a></p>');
 });
 
 app.use('/', express.static(__dirname +'/'));
@@ -39,7 +41,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', function(){
     console.log('-- FIN CONEXIÓN --'.pink);
     socket.broadcast.emit('message', bye);
-    users_count -= 1;
+    connect_count -= 1;
   });  
 
   //-- Mensaje a todos los usuarios
@@ -53,12 +55,12 @@ io.on('connection', (socket) => {
       switch(msg){
         case '/help':
           console.log("Lista de comandos".blue);
-          msg = command_list;
+          msg = commandos;
           socket.send(msg);
           break;
         case '/list':
           console.log("Lista de usuarios".blue);
-          msg = users_count;
+          msg = connect_count;
           socket.send("Hay un total de " + msg + " marujas en la ciudad.");
           break;
         case '/hello':
@@ -73,7 +75,7 @@ io.on('connection', (socket) => {
           break;
         default:
           console.log("Not Found".blue);
-          msg = "404 Not Found. Comando no reconocido, prueba de nuevo.";
+          msg = "404 Not Found. Comando no reconocido, prueba de nuevo. Los comandos están en /help";
           socket.send(msg);
           break;
       }
