@@ -9,6 +9,7 @@ const info1 = document.getElementById("info1");
 const info2 = document.getElementById("info2");
 const info3 = document.getElementById("info3");
 const info4 = document.getElementById("info4");
+const info5 = document.getElementById("info5");
 const usuarios = document.getElementById("usuarios");
 const print = document.getElementById("print");
 
@@ -22,6 +23,11 @@ info3.textContent = process.versions.chrome;
 //info2.textContent = process.platform;
 info4.textContent = process.cwd();
 usuarios.innerHTML = 0;
+
+electron.ipcRenderer.on('ip', (event, message) => {
+    console.log("Recibido: " + message);
+    info5.textContent = message;
+});
 
 btn_test.onclick = () => {
     display.innerHTML += "TEST: Probando, 1, 2, 3... <br>";
