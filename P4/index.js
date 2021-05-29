@@ -10,8 +10,7 @@ const info2 = document.getElementById("info2");
 const info3 = document.getElementById("info3");
 const info4 = document.getElementById("info4");
 const info5 = document.getElementById("info5");
-const usuarios = document.getElementById("usuarios");
-const print = document.getElementById("print");
+const connect_count = document.getElementById("connect_count");
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
@@ -19,14 +18,12 @@ const print = document.getElementById("print");
 info1.textContent = process.versions.node;
 info2.textContent = process.versions.electron;
 info3.textContent = process.versions.chrome;
-//info1.textContent = process.arch;
-//info2.textContent = process.platform;
 info4.textContent = process.cwd();
-usuarios.innerHTML = 0;
+connect_count.innerHTML = 0;
 
-electron.ipcRenderer.on('ip', (event, message) => {
-    console.log("Recibido: " + message);
-    info5.textContent = message;
+electron.ipcRenderer.on('ip', (event, msg) => {
+    console.log("Recibido: " + msg);
+    info5.textContent = msg;
 });
 
 btn_test.onclick = () => {
@@ -37,13 +34,13 @@ btn_test.onclick = () => {
 }
 
 //-- Mensaje recibido del proceso MAIN
-electron.ipcRenderer.on('print', (event, message) => {
-    console.log("Recibido: " + message);
-    print.textContent = message;
-    display.innerHTML += message + "<br>";
+electron.ipcRenderer.on('print', (event, msg) => {
+    console.log("Recibido: " + msg);
+    display.textContent = msg;
+    display.innerHTML += msg + "<br>";
 });
 
-electron.ipcRenderer.on('usuarios', (event, message) => {
-    console.log("Recibido: " + message);
-    usuarios.textContent = message;
+electron.ipcRenderer.on('connect_count', (event, msg) => {
+    console.log("Recibido: " + msg);
+    connect_count.textContent = msg;
 });

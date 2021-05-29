@@ -57,3 +57,20 @@ div::-webkit-scrollbar-thumb {
     background-color: rgb(128, 175, 177);
     border-radius: 50px;
 }
+button{
+    width: 70px;
+    height: 25px;
+    background-color: #b5ebebe5;
+    color: #020e0d;
+    font: bold 100% monospace;
+    border-radius: 15px 15px 15px 15px;
+    }
+button:hover {
+    background-color: #2EBDB1;
+    color: black;
+}
+
+#display{
+    color: #f8f2f2;
+    font-family: 'Itim', cursive;
+}
