@@ -1,0 +1,59 @@
+body {
+    background-color: black;
+}
+body::-webkit-scrollbar {
+    width: 12px;
+}
+body::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(128, 175, 177);
+    border-radius: 50px;
+}
+h1{
+    color: #d4f0ed;
+    font-family: 'Itim', cursive;
+    justify-content: center;
+}
+h2{
+    color: #0cecda;
+    font-family: 'Itim', cursive;
+    margin: 5px;
+}
+li{
+    color: #0cecda;
+    font-family: 'Itim', cursive;
+}
+p{
+    color: #0cecda;
+    font-family: 'Itim', cursive;
+    justify-content: center;
+    margin: 5px;
+}
+#Izquierda {
+    float: left;
+    width: 47%;
+    height: 500px;
+    margin: 5px;
+    border-radius: 5%;
+    background:#161f1fa1
+}
+#Derecha {
+    float: right;
+    width: 47%;
+    height: 500px;
+    margin: 5px;
+    border-radius: 5%;
+    background:#161f1fa1
+}
+div::-webkit-scrollbar {
+    width: 12px;
+}
+div::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.377);
+}
+div::-webkit-scrollbar-thumb {
+    background-color: rgb(128, 175, 177);
+    border-radius: 50px;
+}

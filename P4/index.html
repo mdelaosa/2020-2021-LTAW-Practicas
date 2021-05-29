@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Permitir sólo scripts y ficheros de la máquina local -->
+    <!-- Con esto se elimina el aviso de seguridad: Insecure Content-Security-Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';" />
+    <!-- Hoja de estilo de la interfaz -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Cargar el proceso asociado a esta página -->
+    <script src="index.js" defer></script>
+    <title>Electron Chat</title>
+</head>
+<body>
+    <h1 align="center">ELECTRON CHAT</h1>
+    <br>
+    <div id="Izquierda">
+        <br>
+        <h2>Información</h2>
+        <ul>
+            <li>Versión Node: <span id="info1" class="blue"></span> </li>
+            <li>Versión Electron: <span id="info2" class="blue"></span></li>
+            <li>Versión Chrome: <span id="info3" class="blue"></span></li>
+            <li>URL: <span id="info4" class="blue"></span></li>
+        </ul>
+        <h2>Usuarios</h2>
+        <p id="usuarios" align="center"></p>
+        <br>
+    </div>
+    <div id="Derecha">
+        <br>
+        <p>Mensajes enviados desde el proceso main:</p>
+        <p>Print:  <span id='print' class="red"></span> </p>
+        <p>   <input type="button" value="Test" id="btn_test"> </p>
+        <p>Display:</p>
+        <p id="display"></p>
+    </div>
+</body>
+</html>
