@@ -41,6 +41,6 @@ electron.ipcRenderer.on('print', (event, msg) => {
 });
 
 electron.ipcRenderer.on('connect_count', (event, msg) => {
-    console.log("Recibido: " + msg);
+    console.log("Usuarios: " + msg);
     connect_count.textContent = msg;
 });
