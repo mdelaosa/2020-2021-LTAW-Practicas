@@ -27,16 +27,15 @@ electron.ipcRenderer.on('ip', (event, msg) => {
 });
 
 btn_test.onclick = () => {
-    display.innerHTML += "TEST: Probando, 1, 2, 3... <br>";
+    //display.innerHTML += "TEST: Probando, 1, 2, 3... <br>";
     console.log("Botón apretado!");
     //-- Enviar mensaje al proceso principal
     electron.ipcRenderer.invoke('test', "Probando, 1, 2, 3...");
 }
 
 //-- Mensaje recibido del proceso MAIN
-electron.ipcRenderer.on('print', (event, msg) => {
+electron.ipcRenderer.on('msg', (event, msg) => {
     console.log("Recibido: " + msg);
-    display.textContent = msg;
     display.innerHTML += msg + "<br>";
 });
 

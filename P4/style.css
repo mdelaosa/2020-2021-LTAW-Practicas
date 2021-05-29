@@ -37,7 +37,8 @@ p{
     height: 500px;
     margin: 5px;
     border-radius: 5%;
-    background:#161f1fa1
+    background:#161f1fa1;
+    overflow-y: scroll;
 }
 #Derecha {
     float: right;
@@ -45,7 +46,8 @@ p{
     height: 500px;
     margin: 5px;
     border-radius: 5%;
-    background:#161f1fa1
+    background:#161f1fa1;
+    overflow-y: scroll;
 }
 div::-webkit-scrollbar {
     width: 12px;

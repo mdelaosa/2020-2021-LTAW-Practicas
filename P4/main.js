@@ -26,7 +26,7 @@ let win = null;
 //-- Entrada web
 app.get('/', (req, res) => {
     res.send(__dirname + '/public/chat.html');
-    console.log('Accediento a' + __dirname + '/public/chat.html');
+    console.log('Accede a localhost:9000/chat.html');
 });
 
 app.use('/', express.static(__dirname +'/'));
@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
     //-- Nuevo usuario  
     console.log('-- ¡ALERTA! NUEVA MARUJA --'.pink);
     connect_count += 1;
-    win.webContents.send('users', connect_count);
+    win.webContents.send('connect_count', connect_count);
     socket.send(welcome);
     io.send(usuario);
     //-- socket.broadcast.emit('message', usuario);
@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
       console.log('-- FIN CONEXIÓN --'.pink);
       //-- socket.broadcast.emit('message', bye);
       connect_count -= 1;
-      win.webContents.send('message', bye);
+      win.webContents.send('msg', bye);
     });  
 
   //-- Mensaje a todos los usuarios
@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
 
     const date = new Date(Date.now());
 
-    win.webContents.send('message', msg); 
+    win.webContents.send('msg', msg); 
     
     if (msg.startsWith('/')) {
       console.log('Comandos'.blue);
