@@ -6,7 +6,7 @@ const colors = require('colors');
 const PUERTO = 9000;
 
 const commandos = 'Los comandos disponibles son: /help, /list, /hello y /date';
-const welcome = '-- TODA LA INFORMACIÓN ESCRITA EN ESTE CHAT SERÁ CONFIDENCIAL -- <br>  > Has llegado al servidor perfecto para marujear';
+const welcome = '-- TODA LA INFORMACIÓN ESCRITA EN ESTE CHAT SERÁ CONFIDENCIAL -- <br>  > Has llegado al servidor perfecto para mamarrachear';
 const bye = '¡Adiós!';
 const hello = '¡Holi! Esperamos que tengas información que contar';
 const usuario = 'Alguien nuevo quiere cotillear';
