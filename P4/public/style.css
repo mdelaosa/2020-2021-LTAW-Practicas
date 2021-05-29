@@ -1,0 +1,68 @@
+body::-webkit-scrollbar {
+    width: 12px;
+}
+  
+body::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+}
+  
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(128, 175, 177);
+    border-radius: 50px;
+}
+
+h3{
+    color: #f2f566;
+    font-family: 'Itim', cursive;
+}
+
+#chat{
+    border-radius: 2.5%;
+    background-color: #18e7e7e8;
+    height: 500px;
+    width: 800px;
+    overflow-y: scroll;
+}
+
+div::-webkit-scrollbar {
+    width: 12px;
+}
+  
+div::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.377);
+}
+  
+div::-webkit-scrollbar-thumb {
+    background-color: rgb(128, 175, 177);
+    border-radius: 50px;
+}
+
+input{
+    border-radius: 2.5%;
+    height: 25px;
+    width: 700px;
+    background-color: #b5ebeba1;
+    font: bold 100% monospace;
+    font-display: 'Itim', cursive;
+}
+input:hover {
+    background-color: #2EBDB1;
+}
+
+button{
+    width: 70px;
+    height: 25px;
+    background-color: #b5ebebe5;
+    color: #020e0d;
+    font: bold 100% monospace;
+    border-radius: 15px 15px 15px 15px;
+    }
+button:hover {
+    background-color: #2EBDB1;
+    color: black;
+}
+
+#display{
+    color: #000000;
+    font-family: 'Itim', cursive;
+}
