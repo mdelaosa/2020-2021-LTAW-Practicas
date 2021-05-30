@@ -30,6 +30,106 @@ const FORMULARIO_ERROR = fs.readFileSync('form-pedido-error.html');
 const LOGIN = fs.readFileSync('form-login.html');
 const LOGIN_ERROR = fs.readFileSync('form-login-error.html');
 
+//-- Registros en la web
+let registrados = [];
+console.log('Usuarios registrados:');
+usuarios.forEach((element, index) => {
+  registrados.push(element.usuario);
+  console.log("User " + (index + 1) + '- ' + element.usuario);
+});
+
+//-- Disponibilidad
+let lista =[];
+let disponibles =[];
+console.log("Productos Disponibles");
+tienda[0]["productos"].forEach((element, index) => {
+  console.log("Nombre" + (index + 1) + ": " + element.nombre + ", Precio:" + element.precio + ", Stock:" + element.stock);
+  disponibles.push([element.nombre, element.precio, element.stock]);
+  lista.push(element.nombre);
+});
+
+//-- COOKIES
+//-- Producto 
+var pro;
+function productPage(pro, contenido) {
+  contenido = contenido.replace('nombre', disponibles[pro][0]);
+  contenido = contenido.replace('precio', disponibles[pro][1]);
+  contenido = contenido.replace('stock', disponibles[pro][2]);
+  return contenido;
+}
+
+//-- Usuario
+function getUser(req) {
+  const cookie = req.headers.cookie;
+  if (cookie) {
+      let pares = cookie.split(';');
+      pares.forEach((element) => {
+          let [nombre, valor] = element.split('=');
+          if (nombre.trim() === 'usuario'){
+            usuario = valor;
+          }
+      });
+      return usuario || null;
+  }
+}
+
+//-- Añadir a carrito
+function addCart(req, res, producto) {
+  const cookie = req.headers.cookie;
+  if (cookie) {
+    let pares = cookie.split(';');
+    pares.forEach((element) => {
+      let [nombre, valor] = element.split('=');
+      if (nombre.trim() === 'carrito'){
+        res.setHeader('Set-Cookie', element + '- ' + producto);
+      }
+    });
+  }
+}
+
+//-- Carrito
+function Cart(req) {
+  const cookie = req.headers.cookie;
+  if (cookie) {
+    let pares = cookie.split(';');
+    let carrito;
+    let harry = '';
+    let harry_stock = 0;
+    let shawn = '';
+    let shawn_stock = 0;
+    let atl = '';
+    let atl_stock = 0;
+
+    pares.forEach((element) => {
+      let [nombre, valor] = element.split('=');
+      if (nombre.trim() === 'carrito'){
+        productos = vale.split(':');
+        productos.forEach((producto) => {
+          if(producto == 'harry'){
+            if (harry_stock == 0){
+              harry = disponibles[0][0];
+            }
+            harry_stock += 1;
+          } else if(producto == 'shawn'){
+            if (shawn_stock == 0){
+              shawn = disponibles[1][0];
+            }
+            shawn_stock += 1;
+          } else if(producto == 'atl'){
+            if (atl_stock == 0){
+              atl = disponibles[2][0];
+            }
+            atl_stock += 1;
+          }
+        });
+        carrito = harry + ' - ' + harry_stock + ', ' + shawn + ' - ' + shawn_stock + ', ' + atl + ' - ' + atl_stock;
+      }
+    });
+    return carrito || null;
+  }
+}
+
+//-- SERVIDOR
 //-- Comprobación
 console.log("Servidor arrancado");
 
