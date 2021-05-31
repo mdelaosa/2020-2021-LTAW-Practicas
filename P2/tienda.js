@@ -4,7 +4,7 @@ const fs = require('fs');
 const url = require('url');
 
 //-- Puerto
-const PUERTO = 9000
+const PUERTO = 9000;
 
 //-- Principal y error
 const MAIN = fs.readFileSync('tienda.html');
@@ -32,6 +32,7 @@ const LOGIN_ERROR = fs.readFileSync('login-error.html');
 const LOGIN_CORRECTO = fs.readFileSync('login-correcto.html');
 
 let contenido; 
+let resultado;
 
 //-- Registros en la web
 let registrados = [];
@@ -150,6 +151,10 @@ const server = http.createServer((req, res) => {
   let direccion = myURL.searchParams.get('direccion');
   let producto = myURL.searchParams.get('producto');
 
+  let user = getUser(req);
+  let adding = addCart(req, res, producto);
+  let cart = Cart(req);
+
   let param;
 
   //-- Coger la extensión
@@ -163,10 +168,8 @@ const server = http.createServer((req, res) => {
     'ico'  : 'image/x-icon'
   };
   
-  let mime = mime_type[type_file];
+  let content_type = mime_type['html'];
   //-- console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
-
-  let user = getUser(req);
 
   //-- Fichero a devolver
   //-- http://localhost:9000/
@@ -210,25 +213,45 @@ const server = http.createServer((req, res) => {
       contenido = contenido.replace("Precio", tienda[0].productos[2]['precio']);
       contenido = contenido.replace("Stock", tienda[0].productos[2]['stock']);
     }
-  }
-  
-  //-- Lectura fichero
-  fs.readFile(filename, function(err, data) {
+  } else if (myURL.pathname == '/productos'){
+      let busqueda = [];
+      content_type = mime_type['json'];
+      param = myURL.searchParams.get('param');
+      param = param.toUpperCase();
+      console.log('Parámetro buscado: ' + param);
 
+      for (objeto of TIENDA_JSON) {
+        obj = objeto.toUpperCase();
+        if (obj.startswith(param)){
+          busqueda.push(objeto);
+        }
+      }
+      resultado = busqueda;
+      contenido = JSON.stringify(busqueda);
+      console.log ('Busqueda: ' + busqueda);
+  } else if (myURL.pathname == '/buscar'){
+    lista_productos = ['harry', 'shawn', 'atl'];
+    if (lista_productos[0].includes(busqueda[0])){
+      contenido = PRODUCTO1;
+    } else if(lista_productos[1].includes(busqueda[0])){
+      contenido = PRODUCTO2;
+    } else if(lista_productos[2].includes(busqueda[0])){
+      contenido = PRODUCTO3;
+    } else {
+      contenido = MAIN;
+    }
+  //} else {
+    //contenido = ERROR;
+  }
+  fs.readFile(filename, function(err, data) {
     //-- Fichero no encontrado. Devolver mensaje de error
-    if (err || (myURL.pathname == "/error.html")) {
-      res.writeHead(404, {'Content-Type': mime});
-      filename = "error.html"; 
-      data = fs.readFileSync(filename);
-    }else if(myURL.pathname == "/harry.html"){
-      data = producto1;
-    }else if(myURL.pathname == "/shawn.html"){
-      data = producto2;
-    }else if(myURL.pathname == "/atl.html"){
-      data = producto3;
+    if (err) {
+      res.writeHead(404, {'Content-Type': content_type});
+      //-- filename = "error.html"; 
+      data = ERROR;
     }else{
       //-- Si no da error: 200 OK
-      res.writeHead(200, {'Content-Type': mime});
+      res.writeHead(200, {'Content-Type': mime_type[ext]});
     }
     res.write(data);
     res.end();
