@@ -28,7 +28,10 @@ let usuarios = tienda[1]['usuarios'];
 const FORMULARIO = fs.readFileSync('form-pedido.html');
 const FORMULARIO_ERROR = fs.readFileSync('form-pedido-error.html');
 const LOGIN = fs.readFileSync('form-login.html');
-const LOGIN_ERROR = fs.readFileSync('form-login-error.html');
+const LOGIN_ERROR = fs.readFileSync('login-error.html');
+const LOGIN_CORRECTO = fs.readFileSync('login-correcto.html');
+
+let contenido; 
 
 //-- Registros en la web
 let registrados = [];
@@ -136,21 +139,18 @@ console.log("Servidor arrancado");
 //-- Creación del servidor. Mensaje de control en terminal
 const server = http.createServer((req, res) => {
   console.log("- - Petición recibida - -\n");
-
-  //-- Recurso URL
-  let myURL = url.parse(req.url, true);
-  console.log("Recurso solicitado:" + myURL.pathname)
-
   //-- Fichero para la variable de peticion
   let filename = "";
-  //-- Fichero a devolver
-  //-- http://localhost:9000/
-  if (myURL.pathname == "/"){ 
-    //-- Principal
-    filename += "/tienda.html";  
-  }else{
-    filename += myURL.pathname; 
-  }
+  //-- Recurso URL
+  let myURL = new URL(req.url, 'http://' + req.headers['host']);
+  console.log("Recurso solicitado:" + myURL.pathname)
+
+  let nombre = myURL.searchParams.get('usuario');
+  let password = myURL.searchParams.get('tarjeta');
+  let direccion = myURL.searchParams.get('direccion');
+  let producto = myURL.searchParams.get('producto');
+
+  let param;
 
   //-- Coger la extensión
   type_file = filename.split(".")[1]; 
@@ -164,24 +164,54 @@ const server = http.createServer((req, res) => {
   };
   
   let mime = mime_type[type_file];
-  console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
-  
-  //--PRODUCTOS
-  let producto1 = PRODUCTO1;
-  producto1 = producto1.replace("Nombre", tienda[0].productos[0]['nombre']);
-  producto1 = producto1.replace("Precio", tienda[0].productos[0]['precio']);
-  producto1 = producto1.replace("Stock", tienda[0].productos[0]['stock']);
-  
-  let producto2 = PRODUCTO2;
-  producto2 = producto2.replace("Nombre", tienda[0].productos[1]['nombre']);
-  producto2 = producto2.replace("Precio", tienda[0].productos[1]['precio']);
-  producto2 = producto2.replace("Stock", tienda[0].productos[1]['stock']);
-  
-  let producto3 = PRODUCTO3;
-  producto3 = producto3.replace("Nombre", tienda[0].productos[2]['nombre']);
-  producto3 = producto3.replace("Precio", tienda[0].productos[2]['precio']);
-  producto3 = producto3.replace("Stock", tienda[0].productos[2]['stock']);
+  //-- console.log("Nombre del fichero: " + filename + "\n" + "Tipo: " + type_file);
 
+  let user = getUser(req);
+
+  //-- Fichero a devolver
+  //-- http://localhost:9000/
+  if ((myURL.pathname == '/') || (myURL.pathname == '/login')){ 
+    if (user){
+      contenido = MAIN; 
+    } else{
+      contenido = LOGIN;
+    }
+    //-- filename += "/tienda.html"; 
+  } else if (myURL.pathname == '/procesar') {
+    if (registrados.includes(nombre)){
+      res.setHeader('Set-Cookie', "user =" + nombre);
+      contenido = LOGIN_CORRECTO;
+      console.log('- Usuario registrado -');
+    } else{
+      contenido = LOGIN_ERROR;
+    }
+  } else if (myURL.pathname == '/comprar'){
+    contenido = CARRITO.replace('PRODUCTOS', productos);
+  } else if (myURL.parthname == '/finalizar'){
+    contenido = FORMULARIO;
+  } else if (myURL.pathname == '/producto1') {
+    contenido = PRODUCTO1;
+    for(i=0; i<4; i++) {
+      contenido = contenido.replace("Nombre", tienda[0].productos[0]['nombre']);
+      contenido = contenido.replace("Precio", tienda[0].productos[0]['precio']);
+      contenido = contenido.replace("Stock", tienda[0].productos[0]['stock']);
+    }
+  } else if (myURL.pathname == '/producto2') {
+    contenido = PRODUCTO2;
+    for(i=0; i<4; i++) {
+      contenido = contenido.replace("Nombre", tienda[0].productos[1]['nombre']);
+      contenido = contenido.replace("Precio", tienda[0].productos[1]['precio']);
+      contenido = contenido.replace("Stock", tienda[0].productos[1]['stock']);
+    }
+  } else if (myURL.pathname == '/producto3') {
+    contenido = PRODUCTO3;
+    for(i=0; i<4; i++) {
+      contenido = contenido.replace("Nombre", tienda[0].productos[2]['nombre']);
+      contenido = contenido.replace("Precio", tienda[0].productos[2]['precio']);
+      contenido = contenido.replace("Stock", tienda[0].productos[2]['stock']);
+    }
+  }
+  
   //-- Lectura fichero
   fs.readFile(filename, function(err, data) {
 
