@@ -49,8 +49,6 @@ const server = http.createServer((req, res) => {
     //-- Fichero no encontrado. Devolver mensaje de error
     if (err) {
       res.writeHead(404, {'Content-Type': mime});
-      //-- filename = "error.html"; 
-      //-- data = fs.readFileSync(filename);
     }else{
       //-- Si no da error: 200 OK
       res.writeHead(200, {'Content-Type': mime});
